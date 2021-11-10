@@ -10,7 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.example.ejb.EjbColis;
-import com.example.model.Colis;
+import com.example.jpa.Colis;
 
 @WebServlet("/Register")
 public class Register extends HttpServlet {

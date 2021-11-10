@@ -6,7 +6,7 @@ import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import com.example.model.Colis;
+import com.example.jpa.Colis;
 
 @Stateless
 @LocalBean

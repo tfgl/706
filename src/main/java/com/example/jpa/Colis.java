@@ -1,13 +1,14 @@
-package com.example.model;
+package com.example.jpa;
 
 import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 @NamedQueries ({
-	@NamedQuery(name="all", query="")
+	@NamedQuery(name="all", query="SELECT c FROM Compte c")
 })
 
 @Entity
