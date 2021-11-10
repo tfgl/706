@@ -48,4 +48,11 @@ public class ColisBean implements IColis {
 		c.setEtat(etat);
 		return c;
 	}
+
+	@Override
+	public void deleteColis(long id) {
+		em.createQuery("DELETE FROM Colis c WHERE c.id=:id")
+			.setParameter("id", id)
+			.executeUpdate();
+	}
 }

@@ -65,7 +65,9 @@
       <tbody>
         <c:forEach items="${colis}"  var="col">
 		  <tr>
-          	<th scope="row"><a class="btn btn-primary" href="#" role="button">Modifier</a></th>
+          	<th>
+				<a class="btn btn-info" href="Update?id=${col.id}&method=put" role="button">Modifier</a>
+          	</th>
 		  	<td>${col.id}</td>
 	        <td>${col.poids}</td>
 	        <td>${col.valeur}</td>
@@ -75,7 +77,9 @@
 	        <td>${col.latitude}</td>
 	        <td>${col.emplacement}</td>
 	        <td>${col.etat}</td>
-          	<td><a class="btn btn-danger" href="#" role="button">Supprimer</a></td>
+          	<td>
+				<a class="btn btn-danger" href="Update?id=${col.id}&method=delete" role="button">Supprimer</a>
+          	</td>
           </tr>
 		</c:forEach>
       </tbody>

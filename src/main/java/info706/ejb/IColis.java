@@ -9,5 +9,6 @@ public interface IColis {
 						  String destination, String emplacement, String etat);
 	Colis getColis(long id);
 	Colis updateColis(long id, double latitude, double longitude, String emplacement, String etat);
+	void deleteColis(long id);
 	List<Colis> getAllColis();
 }

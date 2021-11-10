@@ -24,7 +24,9 @@ public class Update extends HttpServlet {
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
+		String method = request.getParameter("method");
+		
+		if( method.equals("put") ) {
 			long id = Integer.parseInt( request.getParameter("id") );
 			
 			double latitude = Double.parseDouble( request.getParameter("latitude") ),
@@ -32,18 +34,30 @@ public class Update extends HttpServlet {
 
 			String emplacement = request.getParameter("emplacement"),
 				   etat = "reigistered";
-				
+					
 			ejb.updateColis(id, latitude, longitude, emplacement, etat);
-				
+					
 			request.getRequestDispatcher("/").forward(request, response);
-		} catch(Exception e) {
-			e.printStackTrace();
+		} else if( method.equals("delete") ) {
+			long id = Integer.parseInt( request.getParameter("id") );
+
+			ejb.deleteColis(id);
+			request.getRequestDispatcher("/Progression").forward(request, response);
+			
 		}
 	}
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+	}
+	
+	@Override
+	public void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		long id = Integer.parseInt( request.getParameter("id") );
+
+		ejb.deleteColis(id);
+		request.getRequestDispatcher("/Progression").forward(request, response);
 	}
 
 }
