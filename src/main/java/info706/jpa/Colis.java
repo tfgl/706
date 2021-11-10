@@ -1,4 +1,4 @@
-package com.example.jpa;
+package info706.jpa;
 
 import java.io.Serializable;
 import javax.persistence.Entity;

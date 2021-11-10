@@ -1,4 +1,4 @@
-package com.example;
+package info706.servlet;
 
 import java.io.IOException;
 
@@ -15,11 +15,13 @@ public class Acceuil extends HttpServlet {
 	public Acceuil() {
 		super();
 	}
-	
+
+	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		this.getServletContext().getRequestDispatcher("/WEB-INF/acceuil.jsp").forward(request, response);
 	}
 
+	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	}
 }
