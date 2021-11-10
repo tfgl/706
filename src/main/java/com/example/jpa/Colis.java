@@ -7,9 +7,6 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 
-@NamedQueries ({
-	@NamedQuery(name="all", query="SELECT c FROM Compte c")
-})
 
 @Entity
 public class Colis implements Serializable {
