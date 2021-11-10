@@ -24,40 +24,24 @@ public class Update extends HttpServlet {
 	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String method = request.getParameter("method");
+		long id = Integer.parseInt( request.getParameter("id") );
 		
-		if( method.equals("put") ) {
-			long id = Integer.parseInt( request.getParameter("id") );
-			
-			double latitude = Double.parseDouble( request.getParameter("latitude") ),
-				   longitude = Double.parseDouble( request.getParameter("longitude") );
-
-			String emplacement = request.getParameter("emplacement"),
-				   etat = "reigistered";
-					
-			ejb.updateColis(id, latitude, longitude, emplacement, etat);
-					
-			request.getRequestDispatcher("/").forward(request, response);
-		} else if( method.equals("delete") ) {
-			long id = Integer.parseInt( request.getParameter("id") );
-
-			ejb.deleteColis(id);
-			request.getRequestDispatcher("/Progression").forward(request, response);
-			
-		}
+		request.setAttribute("colis", ejb.getColis(id));
+		request.getRequestDispatcher("/updateColis.jsp").forward(request, response);
 	}
 	
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
-	
-	@Override
-	public void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		long id = Integer.parseInt( request.getParameter("id") );
-
-		ejb.deleteColis(id);
-		request.getRequestDispatcher("/Progression").forward(request, response);
+		
+		double latitude = Double.parseDouble( request.getParameter("latitude") ),
+			   longitude = Double.parseDouble( request.getParameter("longitude") );
+		
+		String emplacement = request.getParameter("emplacement"),
+			   etat = "registered";
+		
+		ejb.updateColis(id, latitude, longitude, emplacement, etat);
+		
+		request.getRequestDispatcher("Progression").forward(request, response);
 	}
-
 }

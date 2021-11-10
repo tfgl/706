@@ -1,6 +1,6 @@
 <!-- voir tous les colis + cliquer sur colis -->
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+pageEncoding="ISO-8859-1"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
@@ -64,24 +64,24 @@
       </thead>
       <tbody>
         <c:forEach items="${colis}"  var="col">
-		  <tr>
-          	<th>
-				<a class="btn btn-info" href="Update?id=${col.id}&method=put" role="button">Modifier</a>
-          	</th>
-		  	<td>${col.id}</td>
-	        <td>${col.poids}</td>
-	        <td>${col.valeur}</td>
-	        <td>${col.origine}</td>
-	        <td>${col.destination}</td>
-	        <td>${col.longitude}</td>
-	        <td>${col.latitude}</td>
-	        <td>${col.emplacement}</td>
-	        <td>${col.etat}</td>
-          	<td>
-				<a class="btn btn-danger" href="Update?id=${col.id}&method=delete" role="button">Supprimer</a>
-          	</td>
-          </tr>
-		</c:forEach>
+        <tr>
+          <th>
+            <a class="btn btn-info" href="Update?id=${col.id}" role="button">Modifier</a>
+          </th>
+          <td>${col.id}</td>
+          <td>${col.poids}</td>
+          <td>${col.valeur}</td>
+          <td>${col.origine}</td>
+          <td>${col.destination}</td>
+          <td>${col.longitude}</td>
+          <td>${col.latitude}</td>
+          <td>${col.emplacement}</td>
+          <td>${col.etat}</td>
+          <td>
+            <a class="btn btn-danger" href="Delete?id=${col.id}&method=delete" role="button">Supprimer</a>
+          </td>
+        </tr>
+        </c:forEach>
       </tbody>
     </table>
 
