@@ -1,10 +1,12 @@
 package info706.ejb;
 
+import java.util.List;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 import info706.jpa.Colis;
 
@@ -16,7 +18,8 @@ public class ColisBean implements IColis {
 	
 	public ColisBean() {
 	}
-	
+
+	@Override
 	public Colis registerColis(double poids, double valeur, double latitude, double longitude, String origine,
 						  String destination, String emplacement, String etat)
 	{
@@ -25,13 +28,24 @@ public class ColisBean implements IColis {
 		return c;
 	}
 
+	@Override
 	public Colis getColis(long id) {
 		return em.find(Colis.class, id);
 	}
 
 	@Override
-	public Colis updateColis(long id) {
+	public List<Colis> getAllColis() {
+		Query req = em.createQuery("SELECT col FROM Colis col");
+		return req.getResultList();
+	}
+
+	@Override
+	public Colis updateColis(long id, double latitude, double longitude, String emplacement, String etat) {
 		Colis c = em.find(Colis.class, id);
+		c.setLatitude(latitude);
+		c.setLongitude(longitude);
+		c.setEmplacement(emplacement);
+		c.setEtat(etat);
 		return c;
 	}
 }

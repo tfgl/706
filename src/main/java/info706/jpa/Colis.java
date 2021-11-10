@@ -4,9 +4,6 @@ import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-
 
 @Entity
 public class Colis implements Serializable {
@@ -24,6 +21,9 @@ public class Colis implements Serializable {
 				   destination,
 				   emplacement,
 				   etat;
+	
+	public Colis() {
+	}
 	
 	public Colis(double poids, double valeur, double latitude, double longitude, String origine,
 			String destination, String emplacement, String etat) {

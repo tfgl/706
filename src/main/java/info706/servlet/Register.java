@@ -22,30 +22,28 @@ public class Register extends HttpServlet {
 	public Register() {
 		super();
 	}
-
+	
 	@Override
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		try {
-			double poids = Double.parseDouble( request.getParameter("poids") ),
-					   valeur = Double.parseDouble( request.getParameter("valeur") ),
-					   latitude = Double.parseDouble( request.getParameter("latitude") ),
-					   longitude = Double.parseDouble( request.getParameter("longitude") );
-
-				String origine = request.getParameter("orgigne"),
-					   destination = request.getParameter("destination"),
-					   emplacement = request.getParameter("emplacement"),
-					   etat = "reigistered";
-				
-				Colis colis = ejb.registerColis(poids, valeur, latitude, longitude, origine, destination, emplacement, etat);
-				
-				this.getServletContext().getRequestDispatcher("/WEB-INF/acceuil.jsp").forward(request, response);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		request.getRequestDispatcher("/register.jsp").forward(request, response);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		this.doGet(request, response);
+		double poids = Double.parseDouble( request.getParameter("poids") ),
+			   valeur = Double.parseDouble( request.getParameter("valeur") ),
+			   latitude = Double.parseDouble( request.getParameter("latitude") ),
+			   longitude = Double.parseDouble( request.getParameter("longitude") );
+
+		String origine = request.getParameter("origine"),
+			   destination = request.getParameter("destination"),
+			   emplacement = request.getParameter("emplacement"),
+			   etat = "reigistered";
+				
+		ejb.registerColis(poids, valeur, latitude, longitude, origine, destination, emplacement, etat);
+			
+		request.setAttribute("colis", ejb.getAllColis());
+		
+		request.getRequestDispatcher("/progress.jsp").forward(request, response);
 	}
 }
